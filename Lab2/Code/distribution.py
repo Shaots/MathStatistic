@@ -52,8 +52,7 @@ class distribution:
         arrZr = []
         arrZq = []
         arrZtr = []
-        tableE = [[0 for i in range(5)] for j in range(len(self.size))]
-        tableD = [[0 for i in range(5)] for j in range(len(self.size))]
+        table = [[0 for i in range(5)] for j in range(len(self.size) * 4)]
         for i in range(len(self.size)):
             for j in range(self.repetitions):
                 self.build_arr(self.size[i])
@@ -62,14 +61,19 @@ class distribution:
                 arrZr.append(self.z_r(self.size[i]))
                 arrZq.append(self.z_q(self.size[i]))
                 arrZtr.append(self.z_tr(self.size[i]))
-            tableE[i][0] = np.mean(arrMean)
-            tableE[i][1] = np.mean(arrMedian)
-            tableE[i][2] = np.mean(arrZr)
-            tableE[i][3] = np.mean(arrZq)
-            tableE[i][4] = np.mean(arrZtr)
-            tableD[i][0] = np.var(arrMean)
-            tableD[i][1] = np.var(arrMedian)
-            tableD[i][2] = np.var(arrZr)
-            tableD[i][3] = np.var(arrZq)
-            tableD[i][4] = np.var(arrZtr)
-        return tableE, tableD
+            table[4 * i][0] = np.mean(arrMean)
+            table[4 * i][1] = np.mean(arrMedian)
+            table[4 * i][2] = np.mean(arrZr)
+            table[4 * i][3] = np.mean(arrZq)
+            table[4 * i][4] = np.mean(arrZtr)
+            table[4 * i + 1][0] = np.var(arrMean)
+            table[4 * i + 1][1] = np.var(arrMedian)
+            table[4 * i + 1][2] = np.var(arrZr)
+            table[4 * i + 1][3] = np.var(arrZq)
+            table[4 * i + 1][4] = np.var(arrZtr)
+
+        for i in range(len(self.size)):
+            for j in range(len(table[i])):
+                table[4 * i + 2][j] = table[4 * i][j] - np.sqrt(table[4 * i + 1][j])
+                table[4 * i + 3][j] = table[4 * i][j] + np.sqrt(table[4 * i + 1][j])
+        return table

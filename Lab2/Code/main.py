@@ -1,28 +1,26 @@
 import _io
+import csv
 from Lab2.Code.distribution import distribution
 
 
-def myPrintTable2D(file: _io.TextIOWrapper, tableE: list, tableD: list, name: str):
-    file.write(name + "\n")
-    file.write("                   Mean    Median    Zr    Zq    Ztr\n")
-    for i in range(len(tableE)):
-        file.write("E(z): n = 10^%d    " % (i + 1))
-        for j in range(len(tableE[i])):
-            file.write("%.2f    " % tableE[i][j])
-        file.write("\n")
-        file.write("D(z): n = 10^%d    " % (i + 1))
-        for j in range(len(tableD[i])):
-            file.write("%.2f    " % tableD[i][j])
+def myPrintTable2D(file: _io.TextIOWrapper, table: list):
+    for i in range(len(table)):
+        if i % 4 == 2:
+            for j in range(len(table[i])):
+                file.write("[%.3f,%.3f]     " % (table[i][j], table[i + 1][j]))
+        else:
+            if i % 4 != 3:
+                for j in range(len(table[i])):
+                    file.write("%f    " % table[i][j])
         file.write("\n")
 
 
 def main():
     distr = ["Normal", "Cauchy", "Laplace", "Poisson", "Uniform"]
-    nameFileE = ["NormalE.txt", "CauchyE.txt", "LaplaceE.txt", "PoissonE.txt", "UniformE.txt"]
-    nameFileD = ["NormalD.txt", "CauchyD.txt", "LaplaceD.txt", "PoissonD.txt", "UniformD.txt"]
+    nameFile = ["Normal.txt", "Cauchy.txt", "Laplace.txt", "Poisson.txt", "Uniform.txt"]
     for i in range(len(distr)):
         obj = distribution(distr[i])
-        tableE, tableD = obj.build_table()
-        file = open("../result" + nameFileE[i], "w")
-        myPrintTable2D(file, tableE, tableD, distr[i])
+        table = obj.build_table()
+        file = open("../result" + nameFile[i], "w")
+        myPrintTable2D(file, table)
         file.close()
