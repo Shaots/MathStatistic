@@ -1,6 +1,6 @@
 import _io
 import csv
-from Lab2.Code.distribution import distribution
+from Lab2.Code.distribution2 import distribution
 
 
 def myPrintTable2D(file: _io.TextIOWrapper, table: list):
