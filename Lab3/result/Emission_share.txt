@@ -1,0 +1,10 @@
+Normal    size = 20    emission_share = 0.02325
+Normal    size = 100    emission_share = 0.01012
+Cauchy    size = 20    emission_share = 0.15385
+Cauchy    size = 100    emission_share = 0.15493
+Laplace    size = 20    emission_share = 0.0788
+Laplace    size = 100    emission_share = 0.06532
+Poisson    size = 20    emission_share = 0.02365
+Poisson    size = 100    emission_share = 0.0102
+Uniform    size = 20    emission_share = 0.0022
+Uniform    size = 100    emission_share = 0.0
