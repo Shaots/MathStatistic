@@ -1,8 +1,6 @@
 import scipy.stats as scs
 import numpy as np
 import math
-import seaborn as sns
-import pandas as pd
 import matplotlib.pyplot as plt
 
 sizes = [20, 100]
