@@ -1,8 +1,6 @@
 import scipy.stats as stats
 import numpy as np
 import matplotlib.pyplot as plt
-import statistics
-from tabulate import tabulate
 import matplotlib.transforms as transforms
 from matplotlib.patches import Ellipse
 
@@ -41,10 +39,12 @@ class distribution:
         pearson, quadrant, spirman = [], [], []
         for i in range(self.repetitions):
             fun(size, rho)
-            x = [i[0] for i in self.arr]
-            y = [i[1] for i in self.arr]
-            xm = [i[0] for i in self.mix]
-            ym = [i[1] for i in self.mix]
+            if fun == self.build_arr:
+                x = [i[0] for i in self.arr]
+                y = [i[1] for i in self.arr]
+            else:
+                x = [i[0] for i in self.mix]
+                y = [i[1] for i in self.mix]
             quadrant.append(self.quadrant(x, y))
             pearson.append(stats.pearsonr(x, y)[0])
             spirman.append(stats.spearmanr(x, y)[0])
