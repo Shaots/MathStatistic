@@ -23,7 +23,7 @@ def mnk_parameter(x, y):
 
 def mnk(x, y):
     beta_0, beta_1 = mnk_parameter(x, y)
-    file.write("beta_0 = " + str(beta_0) + ", beta_1 = " + str(beta_1) + "\n")
+    file.write("MNK: beta_0 = " + str(beta_0) + ", beta_1 = " + str(beta_1) + "\n")
     return [beta_0 + beta_1 * i for i in x]
 
 
@@ -45,7 +45,7 @@ def mnm_parameter(x, y):
 
 def mnm(x, y):
     beta_0, beta_1 = mnm_parameter(x, y)
-    file.write("beta_0 = " + str(beta_0) + ", beta_1 = " + str(beta_1) + "\n")
+    file.write("MNM: beta_0 = " + str(beta_0) + ", beta_1 = " + str(beta_1) + "\n")
     return [beta_0 + beta_1 * element for element in x]
 
 
